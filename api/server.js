@@ -78,5 +78,5 @@ io.on('connection', (socket) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 5000;
+const PORT = https://newest-jet.vercel.app;
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
