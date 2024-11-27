@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
-const https = require('https'); // For HTTPS support (if needed)
-const fs = require('fs'); // For reading SSL certificates (if needed)
+const https = require('https'); // For HTTPS support
+const fs = require('fs'); // For reading SSL certificates
 const { Server } = require('socket.io');
 const ACTIONS = require('./src/Actions');
 
@@ -14,8 +14,15 @@ const corsConfig = {
     methods: ["GET", "POST"],
 };
 
-// Create an HTTP server (switch to HTTPS if SSL is configured)
-const server = http.createServer(app);
+// SSL certificate configuration (use actual paths to your cert files in production)
+const sslOptions = {
+    key: fs.readFileSync('path/to/your/private-key.pem'), // Path to private key
+    cert: fs.readFileSync('path/to/your/certificate.pem'), // Path to SSL certificate
+    ca: fs.readFileSync('path/to/your/ca-cert.pem') // Path to CA certificate (if needed)
+};
+
+// Choose to create an HTTPS server
+const server = https.createServer(sslOptions, app); // Use HTTPS if certificates are provided, otherwise HTTP
 
 // Initialize Socket.IO with CORS configuration
 const io = new Server(server, { cors: corsConfig });
