@@ -8,7 +8,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000", 
+        origin: "https://newest-jet.vercel.app:3000", 
         methods: ["GET", "POST"],
     },
 });
@@ -78,5 +78,5 @@ io.on('connection', (socket) => {
 });
 
 // Start the server
-const PORT = https://newest-jet.vercel.app;
+const PORT = 5000;
 server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
